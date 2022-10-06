@@ -1,3 +1,10 @@
+# Welcome to my app for finding movies, and you can call this "Finding Movies"
+
+This project for complete my assignments in dibimbing.id as mini project react.
+
+==================================================================================
+## this below is the manual for using react app
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
