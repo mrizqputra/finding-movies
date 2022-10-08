@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.footer {
+  color: white;
+  background-color: black;
+  display: grid;
+  /* height: 25vh; */
+}
+
+.tD_none {
+  text-decoration: none;
+  color: white;
+}
+
+.tD_none:hover {
+  color: orange;
+}  

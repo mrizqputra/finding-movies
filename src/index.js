@@ -1,26 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import './index.css';
-// import App from './App';
 // import reportWebVitals from './reportWebVitals';
 import Navbar from './Navbar';
-import Main from './Main';
+// import App from './App';
+import Login from './Login';
+import Footer from './footer';
+import Item from './item';
+import List from './List';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <>
     <Navbar />,
+    <Outlet />,
+    <Footer />,
     </>,
     errorElement: <p>Page Not Found</p>,
     children: [
       {
         path: "/",
-        element: <>
-        <Main />,
-        {/* <Navbar /> */}
-        </>
+        element: <Item />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/list",
+        element: <List />,
       }
     ],
   }
@@ -29,10 +39,6 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <RouterProvider router={router} />
-  // <React.StrictMode>
-  //   <App />
-  //   {/* <Navbar /> */}
-  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
