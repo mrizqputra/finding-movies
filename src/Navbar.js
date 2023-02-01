@@ -13,11 +13,16 @@ function Navbar() {
       };
       return (
         <>
-        <li className="nav-item">
-          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-          <a className="nav-link" onClick={handleLogout}>
-            Logout : {userName}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Profile
           </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">{userName}</a></li>
+            <li><hr class="dropdown-divider"/></li>
+                      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+            <li><a class="dropdown-item" onClick={handleLogout}>Logout</a></li>
+          </ul>
         </li>
         </>
       );

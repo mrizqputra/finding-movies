@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Footer() {
   return (
     <div className="container-fluid footer text-center">
@@ -9,11 +11,11 @@ function Footer() {
         </div>
         <br />
         <div className="col-12 col-sm-6 col-md-4 mb-2">
-          <a href="#" className="tD_none">About Us</a>
+          <Link to="#" className="tD_none">About Us</Link>
           <br />
-          <a href="#" className="tD_none">Contact Us</a>
+          <Link to="#" className="tD_none">Contact Us</Link>
           <br />
-          <a href="#" className="tD_none">Disclaimer</a>
+          <Link to="#" className="tD_none">Disclaimer</Link>
         </div>
         <br />
         <div className="col-12 col-sm-6 col-md-4 feedback_marginTop">
