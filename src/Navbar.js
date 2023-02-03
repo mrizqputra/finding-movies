@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
   const renderLoginLogout = () => {
-    const userName = localStorage.getItem('userName');
+    const userName = localStorage.getItem("userName");
 
     if (localStorage.getItem("sessionID") || localStorage.getItem("userName")) {
       const handleLogout = () => {
@@ -13,24 +13,42 @@ function Navbar() {
       };
       return (
         <>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Profile
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">{userName}</a></li>
-            <li><hr class="dropdown-divider"/></li>
-                      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <li><a class="dropdown-item" onClick={handleLogout}>Logout</a></li>
-          </ul>
-        </li>
+          <li class="nav-item dropdown">
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Profile
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                                      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                <a class="dropdown-item" href="#">
+                  {userName}
+                </a>
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+              <li>
+                <a class="dropdown-item" onClick={handleLogout}>
+                  Logout
+                </a>
+              </li>
+            </ul>
+          </li>
         </>
       );
     }
     return (
       <li className="nav-item">
         <Link to="/login">
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
           <a className="nav-link">Login</a>
         </Link>
       </li>

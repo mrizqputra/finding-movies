@@ -1,31 +1,37 @@
 import { useState } from "react";
 import axios from "axios";
-import { useFormik, TextField } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 
 const Search = () => {
-  const [searchResult, setSearchResult] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
+  const [searchResult, setSearchResult] = useState(null);
+
+  const handleChange = (e) => {
+    console.log(e.target.value);
+    setSearchValue(e.target.value);
+  };
 
   const formik = useFormik({
     initialValues: {
       query: "",
     },
     validationSchema: Yup.string({
-      query: Yup.string()
-      // .required("Required")
+      query: Yup.string().required("Required"),
     }),
-    onSubmit: (values) => {
+    onSubmit: () => {
       axios
         .get(`${process.env.REACT_APP_BASE_URL}/search/multi`, {
           params: {
             api_key: process.env.REACT_APP_TMDB_KEY,
-            query: `${values.search}`,
+            query: `${searchValue}`,
           },
         })
         .then((response) => {
+          // e.preventDefault();
           // code below for check data get
           console.log("datas => ", response);
-          setSearchResult(response);
+          setSearchResult(response.data.results);
         })
         .catch((e) => {
           console.log(e);
@@ -33,21 +39,165 @@ const Search = () => {
     },
   });
 
-  console.log(searchResult);
+  // console.log(searchResult);
+
+  const resultWrap = () => {
+    if (searchResult === null) {
+      return null;
+    }
+    if (searchResult !== null) {
+    return (
+      <>
+        <h3>this is movie by search</h3>
+        <div id="carouselSearch" className="carousel slide" data-bs-ride="carousel">
+          <div className="carousel-inner">
+            <div className="carousel-item active" data-bs-interval="10000">
+              <div className="row">
+                {searchResult
+                  .filter((results) => results.poster_path !== null)
+                  .map((results) => {
+                    return (
+                      <>
+                        <div className="col-md-6 col-lg-3 mb-3">
+                          <div className="card">
+                            <img
+                              src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
+                              className="card-img-top"
+                              alt={`${results.title}.jpg`}
+                            />
+                          </div>
+                        </div>
+                      </>
+                    );
+                  })
+                  .slice(0, 4)}
+              </div>
+            </div>
+            <div className="carousel-item" data-bs-interval="10000">
+              <div className="row">
+                {searchResult
+                  .filter((results) => results.poster_path !== null)
+                  .map((results) => {
+                    return (
+                      <>
+                        <div className="col-md-6 col-lg-3 mb-3">
+                          <div className="card">
+                            <img
+                              src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
+                              className="card-img-top"
+                              alt={`${results.title}.jpg`}
+                            />
+                          </div>
+                        </div>
+                      </>
+                    );
+                  })
+                  .slice(4, 8)}
+              </div>
+            </div>
+            <div className="carousel-item" data-bs-interval="10000">
+              <div className="row">
+                {searchResult
+                  .filter((results) => results.poster_path !== null)
+                  .map((results) => {
+                    return (
+                      <>
+                        <div className="col-md-6 col-lg-3 mb-3">
+                          <div className="card">
+                            <img
+                              src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
+                              className="card-img-top"
+                              alt={`${results.title}.jpg`}
+                            />
+                          </div>
+                        </div>
+                      </>
+                    );
+                  })
+                  .slice(8, 12)}
+              </div>
+            </div>
+            <div className="carousel-item" data-bs-interval="10000">
+              <div className="row">
+                {searchResult
+                  .filter((results) => results.poster_path !== null)
+                  .map((results) => {
+                    return (
+                      <>
+                        <div className="col-md-6 col-lg-3 mb-3">
+                          <div className="card">
+                            <img
+                              src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
+                              className="card-img-top"
+                              alt={`${results.title}.jpg`}
+                            />
+                          </div>
+                        </div>
+                      </>
+                    );
+                  })
+                  .slice(12, 16)}
+              </div>
+            </div>
+            <div className="carousel-item" data-bs-interval="10000">
+              <div className="row">
+                {searchResult
+                  .filter((results) => results.poster_path !== null)
+                  .map((results) => {
+                    return (
+                      <>
+                        <div className="col-md-6 col-lg-3 mb-3">
+                          <div className="card">
+                            <img
+                              src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
+                              className="card-img-top"
+                              alt={`${results.title}.jpg`}
+                            />
+                          </div>
+                        </div>
+                      </>
+                    );
+                  })
+                  .slice(16, 20)}
+              </div>
+            </div>
+          </div>
+          <button
+            className="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselSearch"
+            data-bs-slide="prev"
+          >
+            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Previous</span>
+          </button>
+          <button
+            className="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselSearch"
+            data-bs-slide="next"
+          >
+            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Next</span>
+          </button>
+        </div>
+      </>
+    )}
+  };
 
   return (
     <>
       <div className="container mb-3">
         <form onSubmit={formik.handleSubmit}>
-          <div class="mb-3">
-            <label htmlFor="inputsearch" class="form-label">
+          <div className="mb-3">
+            <label htmlFor="inputsearch" className="form-label">
               Search Movie
             </label>
-            <TextField
+            <input
               type="text"
-              class="form-control"
+              className="form-control"
               id="inputsearch"
-              onChange={formik.handleChange}
+              onChange={handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.search}
             />
@@ -55,10 +205,11 @@ const Search = () => {
               <div>{formik.errors.search}</div>
             ) : null}
           </div>
-          <button type="submit" class="btn btn-dark">
+          <button type="submit" className="btn btn-dark">
             Submit
           </button>
         </form>
+        {resultWrap()}
       </div>
     </>
   );
