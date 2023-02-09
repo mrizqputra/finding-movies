@@ -27,3 +27,24 @@ code {
 .tD_none:hover {
   color: orange;
 }  
+
+.horizontal-scrollable > .row {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.horizontal-scrollable > .row > .col{
+  display: inline-block;
+}
+
+/* .img-sc {
+  width: 10vw;
+} */
+
+/* .container-rotate {
+  transform: rotate(-90deg);
+}
+
+.item-rotate {
+  transform: rotate(90deg);
+} */
