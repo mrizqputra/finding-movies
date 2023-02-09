@@ -9,7 +9,6 @@ import Login from './Login';
 import Footer from './footer';
 import Item from './GetMovie';
 import GetTV from './getTV';
-import GetTVcopy from './getTV copy';
 import Search from "./Search";
 
 const router = createBrowserRouter([
@@ -24,7 +23,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <><Search/><Item /><GetTV/><GetTVcopy/></>,
+        element: <><Search/><Item /><GetTV/></>,
       },
       {
         path: "/login",

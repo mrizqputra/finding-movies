@@ -28,14 +28,14 @@ code {
   color: orange;
 }  
 
-.horizontal-scrollable > .row {
+/* .horizontal-scrollable > .row {
   overflow-x: auto;
   white-space: nowrap;
 }
 
 .horizontal-scrollable > .row > .col{
   display: inline-block;
-}
+} */
 
 /* .img-sc {
   width: 10vw;
