@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const GetMovie = () => {
   const [movies, setMovies] = useState([]);
@@ -12,7 +13,7 @@ const GetMovie = () => {
       })
       .then((response) => {
         // code below for check data get
-        // console.log("datas => ", response.data.results);
+        console.log("datas => ", response.data.results);
         setMovies(response.data.results);
       });
   }, []);
@@ -30,13 +31,15 @@ const GetMovie = () => {
             <div className="row">
               {movies.slice(0, 4).map((results) => {
                 return (
-                  <div className="col-md-6 col-lg-3 mb-3">
+                  <div className="col-lg-3 mb-3">
                     <div className="card">
+                    <Link to={`/movie/${results.id}`}>
                       <img
                         src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
                         className="card-img-top"
                         alt={`${results.title}.jpg`}
                       />
+                      </Link>
                     </div>
                   </div>
                 );
@@ -47,13 +50,72 @@ const GetMovie = () => {
             <div className="row">
               {movies.slice(4, 8).map((results) => {
                 return (
-                  <div className="col-md-6 col-lg-3 mb-3">
+                  <div className="col-lg-3 mb-3">
                     <div className="card">
+                    <Link to={`/movie/${results.id}`}>
                       <img
                         src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
                         className="card-img-top"
                         alt={`${results.title}.jpg`}
                       />
+                      </Link>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div className="carousel-item" data-bs-interval="10000">
+            <div className="row">
+              {movies.slice(8, 12).map((results) => {
+                return (
+                  <div className="col-lg-3 mb-3">
+                    <div className="card">
+                    <Link to={`/movie/${results.id}`}>
+                      <img
+                        src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
+                        className="card-img-top"
+                        alt={`${results.title}.jpg`}
+                      />
+                      </Link>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div className="carousel-item" data-bs-interval="10000">
+            <div className="row">
+              {movies.slice(12, 16).map((results) => {
+                return (
+                  <div className="col-lg-3 mb-3">
+                    <div className="card">
+                    <Link to={`/movie/${results.id}`}>
+                      <img
+                        src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
+                        className="card-img-top"
+                        alt={`${results.title}.jpg`}
+                      />
+                      </Link>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div className="carousel-item" data-bs-interval="10000">
+            <div className="row">
+              {movies.slice(16, 20).map((results) => {
+                return (
+                  <div className="col-lg-3 mb-3">
+                    <div className="card">
+                    <Link to={`/movie/${results.id}`}>
+                      <img
+                        src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
+                        className="card-img-top"
+                        alt={`${results.title}.jpg`}
+                      />
+                      </Link>
                     </div>
                   </div>
                 );

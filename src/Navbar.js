@@ -26,16 +26,16 @@ function Navbar() {
             </a>
             <ul class="dropdown-menu">
               <li>
-                                      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <a class="dropdown-item" href="#">
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                <Link to="/account" class="dropdown-item">
                   {userName}
-                </a>
+                </Link>
               </li>
               <li>
                 <hr class="dropdown-divider" />
               </li>
-              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <li>
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <a class="dropdown-item" onClick={handleLogout}>
                   Logout
                 </a>
@@ -58,9 +58,9 @@ function Navbar() {
     <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <a className="navbar-brand" href="#">
-          Navbar
-        </a>
+        <Link to='/' className="navbar-brand">
+          Finding Movies
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -75,9 +75,21 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link to="/">
+              <Link to="/" className="text-decoration-none">
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <a className="nav-link">Home</a>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/movie" className="text-decoration-none">
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                <a className="nav-link">Movie</a>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/tv" className="text-decoration-none">
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                <a className="nav-link ">TV</a>
               </Link>
             </li>
             {renderLoginLogout()}

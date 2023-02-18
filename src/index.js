@@ -7,9 +7,11 @@ import Navbar from './Navbar';
 // import App from './App';
 import Login from './Login';
 import Footer from './footer';
-import Item from './GetMovie';
+import GetMovie from './GetMovie';
 import GetTV from './getTV';
 import Search from "./Search";
+import Account from './Account';
+import GetMovieDetail from './GetMovieDetail';
 
 const router = createBrowserRouter([
   {
@@ -23,11 +25,23 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <><Search/><Item /><GetTV/></>,
+        element: <><Search/><GetMovie /><GetTV/></>,
       },
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/movie",
+        element: <GetMovie />,
+      },
+      {
+        path: "/movie/:id",
+        element: <GetMovieDetail />,
+      },
+      {
+        path: "/account",
+        element: <Account />,
       },
     ],
   }
