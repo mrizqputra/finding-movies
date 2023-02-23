@@ -3,33 +3,33 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const GetDetail = () => {
-    const [detailMovie, setDetailMovie] = useState(null);
+    const [detailTV, setDetailTV] = useState(null);
 
     useEffect(() => {
-        const movieid = window.location.pathname.split('/movie/')[1]
-        console.log("this movie id =>", movieid);
+        const TVid = window.location.pathname.split('/tv/')[1]
+        console.log("this tv id =>", TVid);
 
         axios
-            .get(`${process.env.REACT_APP_BASE_URL}/movie/${movieid}`, {
+            .get(`${process.env.REACT_APP_BASE_URL}/tv/${TVid}`, {
                 params: {
                     api_key: process.env.REACT_APP_TMDB_KEY,
                 },
             })
             .then((response) => {
                 // code below for check data get
-                console.log("detail Movie => ", response.data);
-                setDetailMovie(response.data);
+                console.log("detail TV => ", response.data);
+                setDetailTV(response.data);
             });
     }, []);
 
-    console.log(detailMovie);
+    console.log(detailTV);
 
-    if (detailMovie === null) {
+    if (detailTV === null) {
         return (
             <>
                 <div className="fs-4">
                     <Link to="/">
-                        your movie not found, return to home
+                        your TV not found, return to home
                     </Link>
                 </div>
             </>
@@ -38,18 +38,18 @@ const GetDetail = () => {
     return (
         <>
             <div className="container">
-                <div className="fs-1">{detailMovie.title}</div>
+                <div className="fs-1">{detailTV.title}</div>
                 <img
-                    src={`${process.env.REACT_APP_IMG_PATH}/${detailMovie.poster_path}`}
+                    src={`${process.env.REACT_APP_IMG_PATH}/${detailTV.poster_path}`}
                     className="card-img-top h-25 w-50"
-                    alt={`${detailMovie.title}.jpg`}
+                    alt={`${detailTV.title}.jpg`}
                 />
                 <div className="row">
                     <div className="col-2">
                         <div className="fs-4 fw-bold">Release Date:</div>
                     </div>
                     <div className="col-10">
-                        <div className="fs-4 fw-bold">{detailMovie.release_date}</div>
+                        <div className="fs-4 fw-bold">{detailTV.release_date}</div>
                     </div>
                 </div>
                 <div className="row">
@@ -57,7 +57,7 @@ const GetDetail = () => {
                         <div className="fs-4">Overview:</div>
                     </div>
                     <div className="col-10">
-                        <div className="fs-4">{detailMovie.overview}</div>
+                        <div className="fs-4">{detailTV.overview}</div>
                     </div>
                 </div>
                 <div className="row">
@@ -65,7 +65,7 @@ const GetDetail = () => {
                         <div className="fs-4">Movie Url:</div>
                     </div>
                     <div className="col-10">
-                        <div className="fs-4"><a href={detailMovie.homepage} target="blank">{detailMovie.homepage.split("https://")}</a></div>
+                        <div className="fs-4"><a href={detailTV.homepage} target="blank">{detailTV.homepage.split("https://")}</a></div>
                     </div>
                 </div>
                 <div className="row">
@@ -73,7 +73,7 @@ const GetDetail = () => {
                         <div className="fs-4">Rating:</div>
                     </div>
                     <div className="col-10">
-                        <div className="fs-4">{detailMovie.vote_average}/{detailMovie.vote_count} vote</div>
+                        <div className="fs-4">{detailTV.vote_average}/{detailTV.vote_count} vote</div>
 
                     </div>
                 </div>
@@ -82,10 +82,10 @@ const GetDetail = () => {
                         <div className="fs-4">Genre:</div>
                     </div>
                     <div className="col-10">
-                        <div className="fs-4">{Object.values(detailMovie.genres).map((value) => value.name).join(', ')}</div>
+                        <div className="fs-4">{Object.values(detailTV.genres).map((value) => value.name).join(', ')}</div>
                     </div>
                 </div>
-                {/* <div className="fs-4">Overview: {detailMovie.overview}</div> */}
+                {/* <div className="fs-4">Overview: {detailTV.overview}</div> */}
                 {/* <div className="row">
                 <div className="col-2">
 

@@ -9,6 +9,7 @@ import Login from './Login';
 import Footer from './footer';
 import GetMovie from './GetMovie';
 import GetTV from './getTV';
+import GetTVDetail from './GetTVDetail';
 import Search from "./Search";
 import Account from './Account';
 import GetMovieDetail from './GetMovieDetail';
@@ -38,6 +39,14 @@ const router = createBrowserRouter([
       {
         path: "/movie/:id",
         element: <GetMovieDetail />,
+      },
+      {
+        path: "/TV",
+        element: <GetTV />,
+      },
+      {
+        path: "/tv/:id",
+        element: <GetTVDetail />,
       },
       {
         path: "/account",

@@ -3,138 +3,372 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const GetTV = () => {
-  const [tv, setTv] = useState([]);
+  const [onTheAirTV, setOnTheAirTV] = useState([]);
+  const [popularTV, setPopularTV] = useState([]);
 
   useEffect(() => {
+    // axios
+    //   .get(`${process.env.REACT_APP_BASE_URL}/discover/tv`, {
+    //     params: {
+    //       api_key: process.env.REACT_APP_TMDB_KEY,
+    //     },
+    //   })
+    //   .then((response) => {
+    //     // code below for check data get
+    //     console.log("tv's => ", response.data.results);
+    //     setTv(response.data.results);
+    //   });
+
     axios
-      .get(`${process.env.REACT_APP_BASE_URL}/discover/tv`, {
-        params: {
-          api_key: process.env.REACT_APP_TMDB_KEY,
-        },
-      })
-      .then((response) => {
-        // code below for check data get
-        console.log("tv's => ", response.data.results);
-        setTv(response.data.results);
-      });
+      .all([
+        axios.get(`${process.env.REACT_APP_BASE_URL}/tv/on_the_air`, {
+          params: {
+            api_key: process.env.REACT_APP_TMDB_KEY,
+          },
+        }),
+        axios.get(`${process.env.REACT_APP_BASE_URL}/tv/popular`, {
+          params: {
+            api_key: process.env.REACT_APP_TMDB_KEY,
+          },
+        }),
+      ])
+      .then(
+        axios.spread((data1, data2) => {
+          // output of req.
+          console.log("Now Playing =", data1, "Popular =", data2);
+          // return data to state
+          setOnTheAirTV(data1.data.results);
+          setPopularTV(data2.data.results);
+        })
+      );
   }, []);
 
   return (
-    <div className="container">
-      <h3>this is tv by discover</h3>
-        <div
-          id="carouselTv"
-          className="carousel slide"
-          data-bs-ride="carousel"
-        >
-          <div className="carousel-inner">
-            <div className="carousel-item active" data-bs-interval="10000">
-              <div className="row">
-                {tv.slice(0, 4).map((results) => {
-                  return (
-                    <div className="col-lg-3 mb-3">
-                      <div className="card">
-                        <Link to={`/tv/${results.id}`}>
-                        <img
-                          src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                          className="card-img-top"
-                          alt={`${results.title}.jpg`}
-                        />
-                        </Link>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-            <div className="carousel-item" data-bs-interval="10000">
-              <div className="row">
-                {tv.slice(4, 8).map((results) => {
-                  return (
-                    <div className="col-lg-3 mb-3">
-                      <div className="card">
-                        <img
-                          src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                          className="card-img-top"
-                          alt={`${results.title}.jpg`}
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-            <div className="carousel-item" data-bs-interval="10000">
-              <div className="row">
-                {tv.slice(8, 12).map((results) => {
-                  return (
-                    <div className="col-lg-3 mb-3">
-                      <div className="card">
-                        <img
-                          src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                          className="card-img-top"
-                          alt={`${results.title}.jpg`}
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-            <div className="carousel-item" data-bs-interval="10000">
-              <div className="row">
-                {tv.slice(12, 16).map((results) => {
-                  return (
-                    <div className="col-lg-3 mb-3">
-                      <div className="card">
-                        <img
-                          src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                          className="card-img-top"
-                          alt={`${results.title}.jpg`}
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-            <div className="carousel-item" data-bs-interval="10000">
-              <div className="row">
-                {tv.slice(16, 20).map((results) => {
-                  return (
-                    <div className="col-lg-3 mb-3">
-                      <div className="card">
-                        <img
-                          src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                          className="card-img-top"
-                          alt={`${results.title}.jpg`}
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
+    <div className="container mb-3">
+      <nav>
+        <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
           <button
-          className="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselTv"
-          data-bs-slide="prev"
-        >
-          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span className="visually-hidden">Previous</span>
-        </button>
-        <button
-          className="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselTv"
-          data-bs-slide="next"
-        >
-          <span className="carousel-control-next-icon" aria-hidden="true"></span>
-          <span className="visually-hidden">Next</span>
-        </button>
+            class="nav-link active"
+            id="nav-ontheair-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#nav-ontheair"
+            type="button"
+            role="tab"
+            aria-controls="nav-ontheair"
+            aria-selected="true"
+          >
+            ontheair
+          </button>
+          <button
+            class="nav-link"
+            id="nav-populartv-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#nav-populartv"
+            type="button"
+            role="tab"
+            aria-controls="nav-populartv"
+            aria-selected="false"
+          >
+            popular
+          </button>
+          <button
+            class="nav-link"
+            id="nav-disabled-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#nav-disabled"
+            type="button"
+            role="tab"
+            aria-controls="nav-disabled"
+            aria-selected="false"
+            disabled
+          >
+            Disabled
+          </button>
         </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div
+          class="tab-pane fade show active"
+          id="nav-ontheair"
+          role="tabpanel"
+          aria-labelledby="nav-ontheair-tab"
+          tabindex="0"
+        >
+          <h3 className="mb-3">This is on The Air TV Show</h3>
+          <div
+            id="carousel_ontheair"
+            className="carousel slide"
+            data-bs-ride="carousel"
+          >
+            <div className="carousel-inner">
+              <div className="carousel-item active" data-bs-interval="10000">
+                <div className="row">
+                  {onTheAirTV.slice(0, 4).map((results) => {
+                    return (
+                      <div className="col-lg-3 mb-3">
+                        <div className="card">
+                          <Link to={`/tv/${results.id}`}>
+                            <img
+                              src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
+                              className="card-img-top"
+                              alt={`${results.title}.jpg`}
+                            />
+                          </Link>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="carousel-item" data-bs-interval="10000">
+                <div className="row">
+                  {onTheAirTV.slice(4, 8).map((results) => {
+                    return (
+                      <div className="col-lg-3 mb-3">
+                        <div className="card">
+                          <Link to={`/tv/${results.id}`}>
+                            <img
+                              src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
+                              className="card-img-top"
+                              alt={`${results.title}.jpg`}
+                            />
+                          </Link>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="carousel-item" data-bs-interval="10000">
+                <div className="row">
+                  {onTheAirTV.slice(8, 12).map((results) => {
+                    return (
+                      <div className="col-lg-3 mb-3">
+                        <div className="card">
+                          <Link to={`/tv/${results.id}`}>
+                            <img
+                              src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
+                              className="card-img-top"
+                              alt={`${results.title}.jpg`}
+                            />
+                          </Link>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="carousel-item" data-bs-interval="10000">
+                <div className="row">
+                  {onTheAirTV.slice(12, 16).map((results) => {
+                    return (
+                      <div className="col-lg-3 mb-3">
+                        <div className="card">
+                          <Link to={`/tv/${results.id}`}>
+                            <img
+                              src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
+                              className="card-img-top"
+                              alt={`${results.title}.jpg`}
+                            />
+                          </Link>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="carousel-item" data-bs-interval="10000">
+                <div className="row">
+                  {onTheAirTV.slice(16, 20).map((results) => {
+                    return (
+                      <div className="col-lg-3 mb-3">
+                        <div className="card">
+                          <Link to={`/tv/${results.id}`}>
+                            <img
+                              src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
+                              className="card-img-top"
+                              alt={`${results.title}.jpg`}
+                            />
+                          </Link>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+            <button
+              className="carousel-control-prev"
+              type="button"
+              data-bs-target="#carousel_ontheair"
+              data-bs-slide="prev"
+            >
+              <span
+                className="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span className="visually-hidden">Previous</span>
+            </button>
+            <button
+              className="carousel-control-next"
+              type="button"
+              data-bs-target="#carousel_ontheair"
+              data-bs-slide="next"
+            >
+              <span
+                className="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span className="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+        <div
+          class="tab-pane fade"
+          id="nav-populartv"
+          role="tabpanel"
+          aria-labelledby="nav-populartv-tab"
+          tabindex="0"
+        >
+          <h3 className="mb-3">This is Popular TV Show</h3>
+          <div
+            id="carousel_populartv"
+            className="carousel slide"
+            data-bs-ride="carousel"
+          >
+            <div className="carousel-inner">
+              <div className="carousel-item active" data-bs-interval="10000">
+                <div className="row">
+                  {popularTV.slice(0, 4).map((results) => {
+                    return (
+                      <div className="col-lg-3 mb-3">
+                        <div className="card">
+                          <Link to={`/tv/${results.id}`}>
+                            <img
+                              src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
+                              className="card-img-top"
+                              alt={`${results.title}.jpg`}
+                            />
+                          </Link>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="carousel-item" data-bs-interval="10000">
+                <div className="row">
+                  {popularTV.slice(4, 8).map((results) => {
+                    return (
+                      <div className="col-lg-3 mb-3">
+                        <div className="card">
+                          <Link to={`/tv/${results.id}`}>
+                            <img
+                              src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
+                              className="card-img-top"
+                              alt={`${results.title}.jpg`}
+                            />
+                          </Link>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="carousel-item" data-bs-interval="10000">
+                <div className="row">
+                  {popularTV.slice(8, 12).map((results) => {
+                    return (
+                      <div className="col-lg-3 mb-3">
+                        <div className="card">
+                          <Link to={`/tv/${results.id}`}>
+                            <img
+                              src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
+                              className="card-img-top"
+                              alt={`${results.title}.jpg`}
+                            />
+                          </Link>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="carousel-item" data-bs-interval="10000">
+                <div className="row">
+                  {popularTV.slice(12, 16).map((results) => {
+                    return (
+                      <div className="col-lg-3 mb-3">
+                        <div className="card">
+                          <Link to={`/tv/${results.id}`}>
+                            <img
+                              src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
+                              className="card-img-top"
+                              alt={`${results.title}.jpg`}
+                            />
+                          </Link>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="carousel-item" data-bs-interval="10000">
+                <div className="row">
+                  {popularTV.slice(16, 20).map((results) => {
+                    return (
+                      <div className="col-lg-3 mb-3">
+                        <div className="card">
+                          <Link to={`/tv/${results.id}`}>
+                            <img
+                              src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
+                              className="card-img-top"
+                              alt={`${results.title}.jpg`}
+                            />
+                          </Link>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+            <button
+              className="carousel-control-prev"
+              type="button"
+              data-bs-target="#carousel_populartv"
+              data-bs-slide="prev"
+            >
+              <span
+                className="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span className="visually-hidden">Previous</span>
+            </button>
+            <button
+              className="carousel-control-next"
+              type="button"
+              data-bs-target="#carousel_populartv"
+              data-bs-slide="next"
+            >
+              <span
+                className="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span className="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+        <div
+          class="tab-pane fade"
+          id="nav-disabled"
+          role="tabpanel"
+          aria-labelledby="nav-disabled-tab"
+          tabindex="0"
+        >
+          ...
+        </div>
+      </div>
     </div>
   );
 };
