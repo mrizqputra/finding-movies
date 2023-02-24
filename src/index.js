@@ -18,9 +18,9 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <>
-    <Navbar />,
-    <Outlet />,
-    <Footer />,
+    <Navbar />
+    <Outlet />
+    <Footer />
     </>,
     errorElement: <p>Page Not Found</p>,
     children: [
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
         path: "/account",
         element: <Account />,
       },
-    ],
+    ]
   }
 ])
 
