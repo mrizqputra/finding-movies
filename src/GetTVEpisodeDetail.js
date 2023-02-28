@@ -2,47 +2,34 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const GetMovieDetail = () => {
-    const [detailMovie, setDetailMovie] = useState(null);
-    const [creditMovie, setCreditMovie] = useState(null);
+const GetTVEpisodeDetail = () => {
+    const [detailEpisodeTV, setDetailEpisodeTV] = useState(null);
 
     useEffect(() => {
-        const movieid = window.location.pathname.split('/movie/')[1]
-        console.log("this movie id =>", movieid);
+        const tvid = window.location.pathname.split('/')[2];
+        console.log("this TV Seasons id =>", tvid);
+        const seasonNumber = window.location.pathname.split('/')[4]
+        console.log("this TV Seasons id =>", seasonNumber);
+        const episodeNumber = window.location.pathname.split('/')[6]
+        console.log("this TV Seasons id =>", episodeNumber);
+
 
         axios
-            .all([
-                axios.get(`${process.env.REACT_APP_BASE_URL}/movie/${movieid}`, {
-                    params: {
-                        api_key: process.env.REACT_APP_TMDB_KEY,
-                    },
-                }),
-                axios.get(`${process.env.REACT_APP_BASE_URL}/movie/${movieid}/credits`, {
-                    params: {
-                        api_key: process.env.REACT_APP_TMDB_KEY,
-                    },
-                }),
-            ])
-            .then(
-                axios.spread((data1, data2) => {
-                    // output of req.
-                    console.log(
-                        "Detail Movie =",
-                        data1,
-                        "Credit Movie =",
-                        data2,
-                    );
-                    // return data to state
-                    setDetailMovie(data1.data);
-                    setCreditMovie(data2.data);
-                })
-            );
+            .get(`${process.env.REACT_APP_BASE_URL}/tv/${tvid}/season/${seasonNumber}/episode/${episodeNumber}`, {
+                params: {
+                    api_key: process.env.REACT_APP_TMDB_KEY,
+                },
+            })
+            .then((response) => {
+                // code below for check data get
+                console.log("detail TV => ", response.data);
+                setDetailEpisodeTV(response.data);
+            });
     }, []);
 
-    console.log(detailMovie);
-    console.log(creditMovie);
+    console.log(detailEpisodeTV);
 
-    if (detailMovie === null) {
+    if (detailEpisodeTV === null) {
         return (
             <>
                 <div className="fs-4">
@@ -53,16 +40,17 @@ const GetMovieDetail = () => {
             </>
         )
     }
+
     return (
         <>
             <div className="container mb-3">
                 <div className='row'>
                     <div className='col-md-4 col-12 text-center mb-3'>
-                        <div className="fs-3 fw-bold mb-1">{detailMovie.title}</div>
+                        <div className="fs-3 fw-bold mb-1">Episode {detailEpisodeTV.season_number}</div>
                         <img
-                            src={`${process.env.REACT_APP_IMG_PATH}/${detailMovie.poster_path}`}
+                            src={`${process.env.REACT_APP_IMG_PATH}/${detailEpisodeTV.still_path}`}
                             className="card-img-top h-75 w-75"
-                            alt={`${detailMovie.title}.jpg`}
+                            alt={`${detailEpisodeTV.season_number}.jpg`}
                         />
                     </div>
                     <div className='col-md-8 col-sm-12 mb-3'>
@@ -83,62 +71,22 @@ const GetMovieDetail = () => {
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="detail-tab-pane" role="tabpanel" aria-labelledby="detail-tab" tabindex="0">
                                 <div className="row">
-                                    <div className="fs-4 fst-italic fw-bold">"{detailMovie.tagline}"</div>
+                                    <div className="fs-4 fst-italic fw-bold">"{detailEpisodeTV.name}"</div>
                                 </div>
                                 <div className="row">
                                     <div className="col-3">
                                         <div className="fs-6">Overview:</div>
                                     </div>
                                     <div className="col-9">
-                                        <div className="fs-6">{detailMovie.overview}</div>
+                                        <div className="fs-6">{detailEpisodeTV.overview}</div>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <div className="col-3">
-                                        <div className="fs-6">Movie ID:</div>
+                                        <div className="fs-6">Episode ID:</div>
                                     </div>
                                     <div className="col-9">
-                                        <div className="fs-6">{detailMovie.id}</div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-3">
-                                        <div className="fs-6">Release Status:</div>
-                                    </div>
-                                    <div className="col-9">
-                                        <div className="fs-6">{detailMovie.status}</div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-3">
-                                        <div className="fs-6">Release Date:</div>
-                                    </div>
-                                    <div className="col-9">
-                                        <div className="fs-6">{detailMovie.release_date}</div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-3">
-                                        <div className="fs-6">Language:</div>
-                                    </div>
-                                    <div className="col-9">
-                                        <div className="fs-6">{detailMovie.original_language}</div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-3">
-                                        <div className="fs-6">Movie Url:</div>
-                                    </div>
-                                    <div className="col-9">
-                                        <div className="fs-6"><a href={detailMovie.homepage} target="blank">{detailMovie.homepage.split("https://")}</a></div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-3">
-                                        <div className="fs-6">Genre:</div>
-                                    </div>
-                                    <div className="col-9">
-                                        <div className="fs-6">{Object.values(detailMovie.genres).map((value) => value.name).join(', ')}</div>
+                                        <div className="fs-6">{detailEpisodeTV.id}</div>
                                     </div>
                                 </div>
                             </div>
@@ -151,7 +99,7 @@ const GetMovieDetail = () => {
                                         <div className="fs-6">Rating:</div>
                                     </div>
                                     <div className="col-9">
-                                        <div className="fs-6">{detailMovie.vote_average}/{detailMovie.vote_count} voter</div>
+                                        <div className="fs-6">{detailEpisodeTV.vote_average}/{detailEpisodeTV.vote_count} voter</div>
                                     </div>
                                 </div>
                             </div>
@@ -160,19 +108,18 @@ const GetMovieDetail = () => {
                     </div>
                 </div>
                 <div className='row'>
-                    <div className='fs-4 fw-bold mb-3'>Movie Cast</div>
-                    {Object.values(creditMovie.cast).filter((value) => value.profile_path !== null).map((value) => {
+                    {Object.values(detailEpisodeTV.guest_stars).filter((value) => value.profile_path !== null).map((value) => {
                         return (
                             <>
                                 <div className="col-lg-3 mb-3">
                                     <div className="card shadow">
                                         <Link to={`/person/${value.id}`}>
+                                            <div className="fs-6">{value.name} as "{value.character}"</div>
                                             <img
                                                 src={`${process.env.REACT_APP_IMG_PATH}/${value.profile_path}`}
                                                 className="card-img-top shadow"
                                                 alt={`${value.name}.jpg`}
                                             />
-                                            <div className="fs-6 fw-bold">{value.name} as "{value.character}"</div>
                                         </Link>
                                     </div>
                                 </div>
@@ -185,4 +132,4 @@ const GetMovieDetail = () => {
     );
 }
 
-export default GetMovieDetail;
+export default GetTVEpisodeDetail;

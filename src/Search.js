@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { Link } from "react-router-dom";
 
 const Search = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -31,7 +32,7 @@ const Search = () => {
           // e.preventDefault();
           // code below for check data get
           console.log("datas => ", response);
-          setSearchResult(response.data.results);
+          setSearchResult(response.data.results.filter((value) => value.profile_path !== null));
         })
         .catch((e) => {
           console.log(e);
@@ -41,6 +42,15 @@ const Search = () => {
 
   // console.log(searchResult);
 
+  const searchDirect = (results) => {
+    if (results.media_type === "movie") {
+    return `/movie/${results.id}`
+    }
+    if (results.media_type === "tv") {
+      return `/tv/${results.id}`
+      }
+  };
+
   const resultWrap = () => {
     if (searchResult === null) {
       return null;
@@ -48,6 +58,7 @@ const Search = () => {
     if (searchResult !== null) {
       return (
         <>
+        <div className="bg-white container mt-3 shadow rounded">
           <h3>this is movie by search</h3>
           <div id="carouselSearch" className="carousel slide" data-bs-ride="carousel">
             <div className="carousel-inner">
@@ -60,11 +71,13 @@ const Search = () => {
                         <>
                           <div className="col-md-6 col-lg-3 mb-3">
                             <div className="card">
+                              <Link to={searchDirect(results)}>
                               <img
                                 src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
                                 className="card-img-top"
                                 alt={`${results.title}.jpg`}
                               />
+                              </Link>
                             </div>
                           </div>
                         </>
@@ -181,6 +194,7 @@ const Search = () => {
               <span className="visually-hidden">Next</span>
             </button>
           </div>
+        </div>
         </>
       )
     }

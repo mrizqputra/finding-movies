@@ -10,6 +10,8 @@ import Footer from './footer';
 import GetMovie from './GetMovie';
 import GetTV from './getTV';
 import GetTVDetail from './GetTVDetail';
+import GetTVSeasonHub from './GetTVSeasonHub';
+import GetTVEpisodeDetail from './GetTVEpisodeDetail';
 import Search from "./Search";
 import Account from './Account';
 import GetMovieDetail from './GetMovieDetail';
@@ -47,6 +49,14 @@ const router = createBrowserRouter([
       {
         path: "/tv/:id",
         element: <GetTVDetail />,
+      },
+      {
+        path: "/tv/:id/season/:id",
+        element: <GetTVSeasonHub />,
+      },
+      {
+        path: "/tv/:id/season/:id/episode/:id",
+        element: <GetTVEpisodeDetail />,
       },
       {
         path: "/account",

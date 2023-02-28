@@ -54,8 +54,9 @@ function Navbar() {
       </li>
     );
   };
+  
   return (
-    <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-dark mb-3">
       <div className="container-fluid">
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <Link to='/' className="navbar-brand">

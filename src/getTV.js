@@ -46,7 +46,7 @@ const GetTV = () => {
   return (
     <div className="container mb-3">
       <nav>
-        <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
           <button
             class="nav-link active"
             id="nav-ontheair-tab"
@@ -57,7 +57,7 @@ const GetTV = () => {
             aria-controls="nav-ontheair"
             aria-selected="true"
           >
-            ontheair
+            On The Air
           </button>
           <button
             class="nav-link"
@@ -69,9 +69,9 @@ const GetTV = () => {
             aria-controls="nav-populartv"
             aria-selected="false"
           >
-            popular
+            Popular
           </button>
-          <button
+          {/* <button
             class="nav-link"
             id="nav-disabled-tab"
             data-bs-toggle="tab"
@@ -83,18 +83,18 @@ const GetTV = () => {
             disabled
           >
             Disabled
-          </button>
+          </button> */}
         </div>
       </nav>
-      <div class="tab-content" id="nav-tabContent">
+      <div class="tab-content bg-white shadow rounded" id="nav-tabContent">
         <div
-          class="tab-pane fade show active"
+          class="tab-pane fade show active container"
           id="nav-ontheair"
           role="tabpanel"
           aria-labelledby="nav-ontheair-tab"
           tabindex="0"
         >
-          <h3 className="mb-3">This is on The Air TV Show</h3>
+          <div className="mb-3 fs-2">This is on The Air TV Show</div>
           <div
             id="carousel_ontheair"
             className="carousel slide"
@@ -110,7 +110,7 @@ const GetTV = () => {
                           <Link to={`/tv/${results.id}`}>
                             <img
                               src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                              className="card-img-top"
+                              className="card-img-top shadow"
                               alt={`${results.title}.jpg`}
                             />
                           </Link>
@@ -129,7 +129,7 @@ const GetTV = () => {
                           <Link to={`/tv/${results.id}`}>
                             <img
                               src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                              className="card-img-top"
+                              className="card-img-top shadow"
                               alt={`${results.title}.jpg`}
                             />
                           </Link>
@@ -148,7 +148,7 @@ const GetTV = () => {
                           <Link to={`/tv/${results.id}`}>
                             <img
                               src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                              className="card-img-top"
+                              className="card-img-top shadow"
                               alt={`${results.title}.jpg`}
                             />
                           </Link>
@@ -167,7 +167,7 @@ const GetTV = () => {
                           <Link to={`/tv/${results.id}`}>
                             <img
                               src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                              className="card-img-top"
+                              className="card-img-top shadow"
                               alt={`${results.title}.jpg`}
                             />
                           </Link>
@@ -186,7 +186,7 @@ const GetTV = () => {
                           <Link to={`/tv/${results.id}`}>
                             <img
                               src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                              className="card-img-top"
+                              className="card-img-top shadow"
                               alt={`${results.title}.jpg`}
                             />
                           </Link>
@@ -224,13 +224,13 @@ const GetTV = () => {
           </div>
         </div>
         <div
-          class="tab-pane fade"
+          class="tab-pane fade container"
           id="nav-populartv"
           role="tabpanel"
           aria-labelledby="nav-populartv-tab"
           tabindex="0"
         >
-          <h3 className="mb-3">This is Popular TV Show</h3>
+          <div className="mb-3 fs-2">This is Popular TV Show</div>
           <div
             id="carousel_populartv"
             className="carousel slide"
@@ -246,7 +246,7 @@ const GetTV = () => {
                           <Link to={`/tv/${results.id}`}>
                             <img
                               src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                              className="card-img-top"
+                              className="card-img-top shadow"
                               alt={`${results.title}.jpg`}
                             />
                           </Link>
@@ -265,7 +265,7 @@ const GetTV = () => {
                           <Link to={`/tv/${results.id}`}>
                             <img
                               src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                              className="card-img-top"
+                              className="card-img-top shadow"
                               alt={`${results.title}.jpg`}
                             />
                           </Link>
@@ -284,7 +284,7 @@ const GetTV = () => {
                           <Link to={`/tv/${results.id}`}>
                             <img
                               src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                              className="card-img-top"
+                              className="card-img-top shadow"
                               alt={`${results.title}.jpg`}
                             />
                           </Link>
@@ -303,7 +303,7 @@ const GetTV = () => {
                           <Link to={`/tv/${results.id}`}>
                             <img
                               src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                              className="card-img-top"
+                              className="card-img-top shadow"
                               alt={`${results.title}.jpg`}
                             />
                           </Link>
@@ -322,7 +322,7 @@ const GetTV = () => {
                           <Link to={`/tv/${results.id}`}>
                             <img
                               src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                              className="card-img-top"
+                              className="card-img-top shadow"
                               alt={`${results.title}.jpg`}
                             />
                           </Link>

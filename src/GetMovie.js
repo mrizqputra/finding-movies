@@ -48,7 +48,7 @@ const GetMovie = () => {
   return (
     <div className="container mb-3">
       <nav>
-        <div className="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+        <div className="nav nav-tabs" id="nav-tab" role="tablist">
           <button
             className="nav-link active"
             id="nav-nowplaying-tab"
@@ -85,7 +85,7 @@ const GetMovie = () => {
           >
             Upcoming
           </button>
-          <button
+          {/* <button
             className="nav-link"
             id="nav-disabled-tab"
             data-bs-toggle="tab"
@@ -97,18 +97,18 @@ const GetMovie = () => {
             disabled
           >
             Disabled
-          </button>
+          </button> */}
         </div>
       </nav>
-      <div className="tab-content" id="nav-tabContent">
+      <div className="tab-content bg-white shadow rounded" id="nav-tabContent">
         <div
-          className="tab-pane fade show active mb-3"
+          className="tab-pane fade show active container"
           id="nav-nowplaying"
           role="tabpanel"
           aria-labelledby="nav-nowplaying-tab"
           tabindex="0"
         >
-          <h3 className="mb-3">This is Now Playing Movies</h3>
+          <div className="mb-3 fs-2">This is Now Playing Movies</div>
           {/* start of carousel on now playing movies */}
           <div
             id="carousel_NowPlayingMovies"
@@ -125,7 +125,7 @@ const GetMovie = () => {
                           <Link to={`/movie/${results.id}`}>
                             <img
                               src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                              className="card-img-top"
+                              className="card-img-top shadow"
                               alt={`${results.title}.jpg`}
                             />
                           </Link>
@@ -144,7 +144,7 @@ const GetMovie = () => {
                           <Link to={`/movie/${results.id}`}>
                             <img
                               src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                              className="card-img-top"
+                              className="card-img-top shadow"
                               alt={`${results.title}.jpg`}
                             />
                           </Link>
@@ -163,7 +163,7 @@ const GetMovie = () => {
                           <Link to={`/movie/${results.id}`}>
                             <img
                               src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                              className="card-img-top"
+                              className="card-img-top shadow"
                               alt={`${results.title}.jpg`}
                             />
                           </Link>
@@ -182,7 +182,7 @@ const GetMovie = () => {
                           <Link to={`/movie/${results.id}`}>
                             <img
                               src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                              className="card-img-top"
+                              className="card-img-top shadow"
                               alt={`${results.title}.jpg`}
                             />
                           </Link>
@@ -201,7 +201,7 @@ const GetMovie = () => {
                           <Link to={`/movie/${results.id}`}>
                             <img
                               src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                              className="card-img-top"
+                              className="card-img-top shadow"
                               alt={`${results.title}.jpg`}
                             />
                           </Link>
@@ -240,13 +240,13 @@ const GetMovie = () => {
           {/* end of carousel on now playing movies */}
         </div>
         <div
-          className="tab-pane fade mb-3"
+          className="tab-pane fade container"
           id="nav-popular"
           role="tabpanel"
           aria-labelledby="nav-popular-tab"
           tabindex="0"
         >
-          <h3 className="mb-3">This is Popular Movies</h3>
+          <div className="mb-3 fs-2">This is Popular Movies</div>
           {/* start of carousel on popular movies */}
           <div
             id="carousel_PopularMovies"
@@ -263,7 +263,7 @@ const GetMovie = () => {
                           <Link to={`/movie/${results.id}`}>
                             <img
                               src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                              className="card-img-top"
+                              className="card-img-top shadow"
                               alt={`${results.title}.jpg`}
                             />
                           </Link>
@@ -282,7 +282,7 @@ const GetMovie = () => {
                           <Link to={`/movie/${results.id}`}>
                             <img
                               src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                              className="card-img-top"
+                              className="card-img-top shadow"
                               alt={`${results.title}.jpg`}
                             />
                           </Link>
@@ -301,7 +301,7 @@ const GetMovie = () => {
                           <Link to={`/movie/${results.id}`}>
                             <img
                               src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                              className="card-img-top"
+                              className="card-img-top shadow"
                               alt={`${results.title}.jpg`}
                             />
                           </Link>
@@ -320,7 +320,7 @@ const GetMovie = () => {
                           <Link to={`/movie/${results.id}`}>
                             <img
                               src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                              className="card-img-top"
+                              className="card-img-top shadow"
                               alt={`${results.title}.jpg`}
                             />
                           </Link>
@@ -339,7 +339,7 @@ const GetMovie = () => {
                           <Link to={`/movie/${results.id}`}>
                             <img
                               src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                              className="card-img-top"
+                              className="card-img-top shadow"
                               alt={`${results.title}.jpg`}
                             />
                           </Link>
@@ -378,13 +378,13 @@ const GetMovie = () => {
           {/* end of carousel on popular movies */}
         </div>
         <div
-          className="tab-pane fade mb-3"
+          className="tab-pane fade container"
           id="nav-upcoming"
           role="tabpanel"
           aria-labelledby="nav-upcoming-tab"
           tabindex="0"
         >
-          <h3 className="mb-3">This is Upcoming Movies</h3>
+          <div className="mb-3 fs-2">This is Upcoming Movies</div>
           {/* start of carousel on upcoming movies */}
           <div
             id="carousel_UpcomingMovies"
@@ -401,7 +401,7 @@ const GetMovie = () => {
                           <Link to={`/movie/${results.id}`}>
                             <img
                               src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                              className="card-img-top"
+                              className="card-img-top shadow"
                               alt={`${results.title}.jpg`}
                             />
                           </Link>
@@ -420,7 +420,7 @@ const GetMovie = () => {
                           <Link to={`/movie/${results.id}`}>
                             <img
                               src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                              className="card-img-top"
+                              className="card-img-top shadow"
                               alt={`${results.title}.jpg`}
                             />
                           </Link>
@@ -439,7 +439,7 @@ const GetMovie = () => {
                           <Link to={`/movie/${results.id}`}>
                             <img
                               src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                              className="card-img-top"
+                              className="card-img-top shadow"
                               alt={`${results.title}.jpg`}
                             />
                           </Link>
@@ -458,7 +458,7 @@ const GetMovie = () => {
                           <Link to={`/movie/${results.id}`}>
                             <img
                               src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                              className="card-img-top"
+                              className="card-img-top shadow"
                               alt={`${results.title}.jpg`}
                             />
                           </Link>
@@ -477,7 +477,7 @@ const GetMovie = () => {
                           <Link to={`/movie/${results.id}`}>
                             <img
                               src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
-                              className="card-img-top"
+                              className="card-img-top shadow"
                               alt={`${results.title}.jpg`}
                             />
                           </Link>

@@ -5,9 +5,9 @@ function Footer() {
     <div className="container-fluid footer text-center">
       <div className="row grid">
         <div className="col-12 col-sm-6 col-md-4 mb-2">
-          Mini Project
+          Movie App Library
           <br />
-          for dibimbing.id on React JS class.
+          API by <a className='tD_none' href='https://www.themoviedb.org/' target='_blank' rel="noreferrer">themoviedb.org</a>
         </div>
         <br />
         <div className="col-12 col-sm-6 col-md-4 mb-2">
