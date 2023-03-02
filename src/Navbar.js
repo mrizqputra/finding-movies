@@ -13,35 +13,27 @@ function Navbar() {
       };
       return (
         <>
-          <li class="nav-item dropdown">
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Profile
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <Link to="/account" class="dropdown-item">
-                  {userName}
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav ms-md-auto">
+              <li className="nav-item">
+                <Link to="/account" className="text-decoration-none">
+                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                  <a className="nav-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                      <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
+                    </svg>
+                    &nbsp; {userName}
+                  </a>
                 </Link>
               </li>
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
-              <li>
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <a class="dropdown-item" onClick={handleLogout}>
-                  Logout
-                </a>
+              <li className="nav-item">
+                <Link onClick={handleLogout} className="text-decoration-none">
+                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                  <a className="nav-link">Logout</a>
+                </Link>
               </li>
             </ul>
-          </li>
+          </div>
         </>
       );
     }
@@ -54,7 +46,7 @@ function Navbar() {
       </li>
     );
   };
-  
+
   return (
     <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-dark mb-3">
       <div className="container-fluid">
@@ -93,9 +85,9 @@ function Navbar() {
                 <a className="nav-link ">TV</a>
               </Link>
             </li>
-            {renderLoginLogout()}
           </ul>
         </div>
+        {renderLoginLogout()}
       </div>
     </nav>
   );

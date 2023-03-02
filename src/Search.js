@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { Link } from "react-router-dom";
 
 const Search = () => {
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
   const [searchResult, setSearchResult] = useState(null);
 
   const handleChange = (e) => {
@@ -15,7 +15,7 @@ const Search = () => {
 
   const formik = useFormik({
     initialValues: {
-      query: "",
+      query: '',
     },
     validationSchema: Yup.string({
       query: Yup.string().required("Required"),
@@ -95,11 +95,13 @@ const Search = () => {
                         <>
                           <div className="col-md-6 col-lg-3 mb-3">
                             <div className="card">
+                            <Link to={searchDirect(results)}>
                               <img
                                 src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
                                 className="card-img-top"
                                 alt={`${results.title}.jpg`}
                               />
+                              </Link>
                             </div>
                           </div>
                         </>
@@ -117,11 +119,13 @@ const Search = () => {
                         <>
                           <div className="col-md-6 col-lg-3 mb-3">
                             <div className="card">
+                            <Link to={searchDirect(results)}>
                               <img
                                 src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
                                 className="card-img-top"
                                 alt={`${results.title}.jpg`}
                               />
+                              </Link>
                             </div>
                           </div>
                         </>
@@ -139,11 +143,13 @@ const Search = () => {
                         <>
                           <div className="col-md-6 col-lg-3 mb-3">
                             <div className="card">
+                            <Link to={searchDirect(results)}>
                               <img
                                 src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
                                 className="card-img-top"
                                 alt={`${results.title}.jpg`}
                               />
+                              </Link>
                             </div>
                           </div>
                         </>
@@ -161,11 +167,13 @@ const Search = () => {
                         <>
                           <div className="col-md-6 col-lg-3 mb-3">
                             <div className="card">
+                            <Link to={searchDirect(results)}>
                               <img
                                 src={`${process.env.REACT_APP_IMG_PATH}/${results.poster_path}`}
                                 className="card-img-top"
                                 alt={`${results.title}.jpg`}
                               />
+                              </Link>
                             </div>
                           </div>
                         </>
@@ -206,7 +214,7 @@ const Search = () => {
         <form onSubmit={formik.handleSubmit}>
           <div className="mb-3">
             <label htmlFor="inputsearch" className="form-label">
-              Search Movie
+              Search Movie or TV Series
             </label>
             <input
               type="text"
@@ -215,6 +223,7 @@ const Search = () => {
               onChange={handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.search}
+              placeholder='input search'
             />
             {formik.touched.search && formik.errors.search ? (
               <div>{formik.errors.search}</div>

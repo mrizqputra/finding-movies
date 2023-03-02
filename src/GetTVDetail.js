@@ -40,7 +40,7 @@ const GetDetailTV = () => {
             <div className="container mb-3">
                 <div className='row mb-3'>
                     <div className='col-md-4 col-12 text-center mb-3'>
-                        <div className="fs-3 fw-bold mb-1">{detailTV.title}</div>
+                        <div className="fs-3 fw-bold mb-1">{detailTV.name}</div>
                         <img
                             src={`${process.env.REACT_APP_IMG_PATH}/${detailTV.poster_path}`}
                             className="card-img-top h-75 w-75"

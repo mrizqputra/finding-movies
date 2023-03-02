@@ -94,7 +94,7 @@ const GetTV = () => {
           aria-labelledby="nav-ontheair-tab"
           tabindex="0"
         >
-          <div className="mb-3 fs-2">This is on The Air TV Show</div>
+          <div className="mb-3 fs-2">This is On The Air TV Show</div>
           <div
             id="carousel_ontheair"
             className="carousel slide"

@@ -19,15 +19,24 @@ const GetTVSeasonsDetail = () => {
             })
             .then((response) => {
                 // code below for check data get
-                console.log("detail season => ", response.data);
+                // console.log("detail season => ", response.data);
                 setDetailSeasonTV(response.data);
             });
     }, []);
 
-    console.log(detailSeasonTV);
+    console.log('value =>', detailSeasonTV);
+    // console.log("tv name =",detailSeasonTV.name)
 
     if (detailSeasonTV === null) {
-        return null;
+        return (
+            <>
+            <div className="fs-4">
+                <Link to="/">
+                    your TV not found, return to detail
+                </Link>
+            </div>
+        </>
+        )
     }
 
     return (
