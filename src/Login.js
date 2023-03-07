@@ -78,39 +78,44 @@ const Login = () => {
     console.log(localStorage.getItem('sessionID'))
   }, [])
 
-  return <div className='container'>
-    <form onSubmit={formik.handleSubmit}>
-      <label htmlFor="username">Username</label>
-      <input
-        id="username"
-        name="username"
-        type="text"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.username}
-        className="input-group mb-3"
-      />
-      {formik.touched.username && formik.errors.username ? (
-        <div>{formik.errors.username}</div>
-      ) : null}
-      <br></br>
-      <label htmlFor="password">Password</label>
-      <input
-        id="password"
-        name="password"
-        type="password"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.password}
-        className="input-group mb-3"
-      />
-      {formik.touched.password && formik.errors.password ? (
-        <div>{formik.errors.password}</div>
-      ) : null}
-      <br></br>
-      <button type="submit" className="btn btn-primary">Submit</button>
-    </form>
-  </div>
+  return (
+    <>
+      <div className='container bg-white shadow-lg rounded p-5 my-5'>
+        <div className="fs-2 fw-bold text-center mb-3">Login Form</div>
+        <form onSubmit={formik.handleSubmit} className='px-lg-5'>
+          <label htmlFor="username">Username</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.username}
+            className="input-group mb-3"
+          />
+          {formik.touched.username && formik.errors.username ? (
+            <div>{formik.errors.username}</div>
+          ) : null}
+          <br></br>
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.password}
+            className="input-group mb-3"
+          />
+          {formik.touched.password && formik.errors.password ? (
+            <div>{formik.errors.password}</div>
+          ) : null}
+          <br></br>
+          <button type="submit" className="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </>
+  )
 }
 
 export default Login;

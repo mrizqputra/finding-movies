@@ -52,7 +52,7 @@ const GetTVSeasonsDetail = () => {
                         />
                     </div>
                     <div className='col-md-8 col-sm-12 mb-3'>
-                        <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="detail-tab" data-bs-toggle="tab" data-bs-target="#detail-tab-pane" type="button" role="tab" aria-controls="detail-tab-pane" aria-selected="true">Detail</button>
                             </li>
@@ -67,7 +67,7 @@ const GetTVSeasonsDetail = () => {
                             </li>
                         </ul>
                         <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="detail-tab-pane" role="tabpanel" aria-labelledby="detail-tab" tabindex="0">
+                            <div class="tab-pane fade show active bg-white rounded shadow p-3" id="detail-tab-pane" role="tabpanel" aria-labelledby="detail-tab" tabindex="0">
                                 <div className="row">
                                     <div className="col-3">
                                         <div className="fs-6">Overview:</div>
@@ -104,7 +104,7 @@ const GetTVSeasonsDetail = () => {
                             {/* <div class="tab-pane fade" id="overview-tab-pane" role="tabpanel" aria-labelledby="overview-tab" tabindex="0">
                                 ...
                             </div> */}
-                            <div class="tab-pane fade" id="rating-tab-pane" role="tabpanel" aria-labelledby="rating-tab" tabindex="0">
+                            <div class="tab-pane fade bg-white rounded shadow p-3" id="rating-tab-pane" role="tabpanel" aria-labelledby="rating-tab" tabindex="0">
                                 <div className='row'>
                                     {Object.values(detailSeasonTV.episodes).map((value) => {
                                         return (

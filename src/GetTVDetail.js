@@ -38,7 +38,7 @@ const GetDetailTV = () => {
     return (
         <>
             <div className="container mb-3">
-                <div className='row mb-3'>
+                <div className='row'>
                     <div className='col-md-4 col-12 text-center mb-3'>
                         <div className="fs-3 fw-bold mb-1">{detailTV.name}</div>
                         <img
@@ -48,7 +48,7 @@ const GetDetailTV = () => {
                         />
                     </div>
                     <div className='col-md-8 col-sm-12 mb-3'>
-                        <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="detail-tab" data-bs-toggle="tab" data-bs-target="#detail-tab-pane" type="button" role="tab" aria-controls="detail-tab-pane" aria-selected="true">Detail</button>
                             </li>
@@ -62,8 +62,8 @@ const GetDetailTV = () => {
                                 <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false" disabled>Disabled</button>
                             </li>
                         </ul>
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="detail-tab-pane" role="tabpanel" aria-labelledby="detail-tab" tabindex="0">
+                        <div class="tab-content " id="myTabContent">
+                            <div class="tab-pane fade show active bg-white rounded shadow p-3" id="detail-tab-pane" role="tabpanel" aria-labelledby="detail-tab" tabindex="0">
                                 <div className="row">
                                     <div className="fs-4 fst-italic fw-bold">"{detailTV.tagline}"</div>
                                 </div>
@@ -136,7 +136,7 @@ const GetDetailTV = () => {
                                         <div className="fs-6">Movie Url:</div>
                                     </div>
                                     <div className="col-9">
-                                        <div className="fs-6"><a href={detailTV.homepage} target="blank">{detailTV.homepage.split("https://")}</a></div>
+                                        <div className="fs-6"><a href={detailTV.homepage} target="blank">{detailTV.homepage}</a></div>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -151,7 +151,7 @@ const GetDetailTV = () => {
                             {/* <div class="tab-pane fade" id="overview-tab-pane" role="tabpanel" aria-labelledby="overview-tab" tabindex="0">
                                 ...
                             </div> */}
-                            <div class="tab-pane fade" id="rating-tab-pane" role="tabpanel" aria-labelledby="rating-tab" tabindex="0">
+                            <div class="tab-pane fade bg-white rounded shadow p-3" id="rating-tab-pane" role="tabpanel" aria-labelledby="rating-tab" tabindex="0">
                                 <div className="row">
                                     <div className="col-3">
                                         <div className="fs-6">Rating:</div>
@@ -165,24 +165,27 @@ const GetDetailTV = () => {
                         </div>
                     </div>
                 </div>
-                <div className='row mb-3'>
-                    {Object.values(detailTV.seasons).map((value) => {
-                        return (
-                            <>
-                                <div className="col-lg-3 mb-3">
-                                    <div className="card shadow">
-                                        <Link to={`/tv/${detailTV.id}/season/${value.season_number}`}>
-                                            <img
-                                                src={`${process.env.REACT_APP_IMG_PATH}/${value.poster_path}`}
-                                                className="card-img-top shadow"
-                                                alt={`${value.title}.jpg`}
-                                            />
-                                        </Link>
+                <div className="container shadow bg-white rounded">
+                    <div className='row p-3'>
+                        <div className='fs-4 fw-bold mb-3'>TV</div>
+                        {Object.values(detailTV.seasons).map((value) => {
+                            return (
+                                <>
+                                    <div className="col-lg-3 mb-3">
+                                        <div className="card shadow">
+                                            <Link to={`/tv/${detailTV.id}/season/${value.season_number}`}>
+                                                <img
+                                                    src={`${process.env.REACT_APP_IMG_PATH}/${value.poster_path}`}
+                                                    className="card-img-top shadow"
+                                                    alt={`${value.title}.jpg`}
+                                                />
+                                            </Link>
+                                        </div>
                                     </div>
-                                </div>
-                            </>
-                        )
-                    })}
+                                </>
+                            )
+                        })}
+                    </div>
                 </div>
             </div>
         </>

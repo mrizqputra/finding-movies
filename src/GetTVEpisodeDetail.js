@@ -54,7 +54,7 @@ const GetTVEpisodeDetail = () => {
                         />
                     </div>
                     <div className='col-md-8 col-sm-12 mb-3'>
-                        <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="detail-tab" data-bs-toggle="tab" data-bs-target="#detail-tab-pane" type="button" role="tab" aria-controls="detail-tab-pane" aria-selected="true">Detail</button>
                             </li>
@@ -69,7 +69,7 @@ const GetTVEpisodeDetail = () => {
                             </li>
                         </ul>
                         <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="detail-tab-pane" role="tabpanel" aria-labelledby="detail-tab" tabindex="0">
+                            <div class="tab-pane fade show active  bg-white rounded shadow p-3" id="detail-tab-pane" role="tabpanel" aria-labelledby="detail-tab" tabindex="0">
                                 <div className="row">
                                     <div className="fs-4 fst-italic fw-bold">"{detailEpisodeTV.name}"</div>
                                 </div>
@@ -93,7 +93,7 @@ const GetTVEpisodeDetail = () => {
                             {/* <div class="tab-pane fade" id="overview-tab-pane" role="tabpanel" aria-labelledby="overview-tab" tabindex="0">
                                 ...
                             </div> */}
-                            <div class="tab-pane fade" id="rating-tab-pane" role="tabpanel" aria-labelledby="rating-tab" tabindex="0">
+                            <div class="tab-pane fade  bg-white rounded shadow p-3" id="rating-tab-pane" role="tabpanel" aria-labelledby="rating-tab" tabindex="0">
                                 <div className="row">
                                     <div className="col-3">
                                         <div className="fs-6">Rating:</div>
@@ -107,7 +107,8 @@ const GetTVEpisodeDetail = () => {
                         </div>
                     </div>
                 </div>
-                <div className='row'>
+                <div className='row bg-white rounded shadow p-3'>
+                    <div className='fs-4 fw-bold mb-3'>TV Cast</div>
                     {Object.values(detailEpisodeTV.guest_stars).filter((value) => value.profile_path !== null).map((value) => {
                         return (
                             <>

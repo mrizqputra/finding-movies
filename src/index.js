@@ -15,6 +15,7 @@ import GetTVEpisodeDetail from './GetTVEpisodeDetail';
 import Search from "./Search";
 import Account from './Account';
 import GetMovieDetail from './GetMovieDetail';
+import GetPersonDetail from './GetPersonDetail';
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "/tv/:id/season/:id/episode/:id",
         element: <GetTVEpisodeDetail />,
+      },
+      {
+        path: "/person/:id",
+        element: <GetPersonDetail />,
       },
       {
         path: "/account",
